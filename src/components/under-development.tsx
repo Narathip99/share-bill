@@ -1,31 +1,37 @@
 import React from "react";
-import { Bot, Coffee, Wine } from "lucide-react";
+import Image from "next/image";
+
+const getRandomMeme = () => {
+  const index = Math.floor(Math.random() * 8) + 1;
+  const extension = [1, 2, 3, 4].includes(index) ? "png" : "jpg";
+  return `/images/maintenance-meme-${index}.${extension}`;
+};
 
 const UnderDevelopmentPage = () => {
   return (
     <div className="min-h-screen bg-black flex items-center justify-center p-4 overflow-hidden">
       <div className="relative bg-white rounded-lg p-8 max-w-lg w-full animate-[wobble_4s_ease-in-out_infinite]">
         {/* Floating bottles */}
-        <div className="absolute -top-6 -right-6 rotate-12 animate-bounce">
-          <Wine className="w-10 h-10 text-yellow-500" />
-        </div>
-        <div className="absolute -bottom-6 -left-6 -rotate-12 animate-bounce delay-300">
-          <Wine className="w-10 h-10 text-yellow-500" />
-        </div>
-
         <div className="space-y-8 text-center">
           <div className="relative">
-            <Bot className="w-20 h-20 mx-auto animate-[spin_3s_ease-in-out_infinite]" />
-            <Coffee className="absolute top-12 right-1/3 w-6 h-6 animate-bounce" />
+            <div className="relative w-[200px] h-[200px] mx-auto">
+              <Image
+                src={getRandomMeme()}
+                alt="Maintenance meme"
+                fill
+                className="object-contain"
+                loading="eager"
+                priority
+              />
+            </div>
           </div>
-
           <div className="space-y-4">
             <h1 className="text-4xl font-bold animate-[bounce_2s_ease-in-out_infinite]">
               *อึ๊ก* 🥃
             </h1>
 
             <p className="text-lg font-mono rotate-1">
-              นักพัฒนากำลังแฮงค์...
+              นักพัฒนากำลังแฮงค์อยู่...
               <br />
               <span className="italic">{">>> import brain"}</span>
               <br />
