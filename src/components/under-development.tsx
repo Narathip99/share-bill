@@ -1,13 +1,19 @@
-import React from "react";
+"use client";
+
+import { useState, useEffect } from "react";
 import Image from "next/image";
 
-const getRandomMeme = () => {
-  const index = Math.floor(Math.random() * 8) + 1;
-  const extension = [1, 2, 3, 4].includes(index) ? "png" : "jpg";
-  return `/images/maintenance-meme-${index}.${extension}`;
-};
-
 const UnderDevelopmentPage = () => {
+  const [memeUrl, setMemeUrl] = useState<string>("");
+
+  useEffect(() => {
+    const index = Math.floor(Math.random() * 8) + 1;
+    const extension = [1, 2, 3, 4].includes(index) ? "png" : "jpg";
+    setMemeUrl(`/images/maintenance-meme-${index}.${extension}`);
+  }, []);
+
+  if (!memeUrl) return null;
+
   return (
     <div className="min-h-screen bg-black flex items-center justify-center p-4 overflow-hidden">
       <div className="relative bg-white rounded-lg p-8 max-w-lg w-full animate-[wobble_4s_ease-in-out_infinite]">
@@ -16,7 +22,7 @@ const UnderDevelopmentPage = () => {
           <div className="relative">
             <div className="relative w-[200px] h-[200px] mx-auto">
               <Image
-                src={getRandomMeme()}
+                src={memeUrl}
                 alt="Maintenance meme"
                 fill
                 className="object-contain"
