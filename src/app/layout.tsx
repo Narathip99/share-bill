@@ -1,10 +1,9 @@
-import { Analytics } from '@vercel/analytics/next';
-import { SpeedInsights } from "@vercel/speed-insights/next"
+import { Analytics } from "@vercel/analytics/next";
+import { SpeedInsights } from "@vercel/speed-insights/next";
+
+import "@/app/globals.css";
 
 import type { Metadata } from "next";
-import "@/styles/globals.css";
-import "@/styles/tailwind.css";
-
 export const metadata: Metadata = {
   title: "Share Bill - แอพหารบิลสำหรับสายปาร์ตี้",
   description:
@@ -34,15 +33,30 @@ export const metadata: Metadata = {
   },
 };
 
+// components
+import UnderDevelopmentPage from "@/components/under-development";
+import Header from "@/components/Header";
+import Footer from "@/components/Footer";
+
 export default function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const isDevelopment = false;
+
   return (
     <html lang="en">
-      <body className={`antialiased`}>
-        {children}
+      <body className="antialiased min-h-screen">
+        {isDevelopment ? (
+          <UnderDevelopmentPage />
+        ) : (
+          <>
+            <Header />
+            <main>{children}</main>
+            <Footer />
+          </>
+        )}
         <Analytics />
         <SpeedInsights />
       </body>
