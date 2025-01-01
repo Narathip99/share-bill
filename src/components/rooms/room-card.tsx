@@ -31,7 +31,9 @@ const RoomCard: React.FC<Props> = ({
         <p className="text-sm">Total: {total ? total : ""} Bath</p>
       </div>
       <div className="flex flex-col justify-between items-end">
-        <Badge variant="secondary" className="w-fit">{people ? people : ""} people</Badge>
+        <Badge variant="secondary" className="w-fit">
+          {people ? people : ""} people
+        </Badge>
         <Link
           href={href ? href : "/"}
           className="text-sm flex items-center gap-2"
