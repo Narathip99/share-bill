@@ -7,8 +7,6 @@ import { UsersIcon } from "@/components/ui/users";
 import { CirclePlus, History } from "lucide-react";
 
 export default function Home() {
-  const isLoggedIn = false;
-
   const roomData = [
     {
       title: "Room 1",
@@ -34,21 +32,24 @@ export default function Home() {
             <CardTitle>Create Your Room Now!</CardTitle>
           </CardHeader>
           <CardContent>
-            <Button className="w-full">
-              <Link href="/room" className="flex items-center gap-2">
+            <Link href="/room" className="w-full">
+              <Button className="w-full flex items-center gap-2">
                 <CirclePlus /> Create
-              </Link>
-            </Button>
+              </Button>
+            </Link>
           </CardContent>
         </Card>
 
         <div>
           <div className="my-2 flex justify-between">
             <h2 className="text-lg font-semibold">History</h2>
-            <p className="text-sm flex items-center gap-2">
+            <Link
+              href="/history"
+              className="text-sm flex items-center gap-2 hover:underline"
+            >
               <History className="w-4 h-4" />
               See all
-            </p>
+            </Link>
           </div>
           <div className="space-y-4">
             {roomData.map((room, index) => (

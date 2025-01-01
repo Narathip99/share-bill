@@ -6,7 +6,7 @@ import { Badge } from "@/components/ui/badge";
 import { ArrowRight } from "lucide-react";
 
 type Props = {
-  children: React.ReactNode;
+  children?: React.ReactNode;
   title: string;
   lastUpdated: string;
   total: number;
