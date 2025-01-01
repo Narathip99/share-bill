@@ -1,7 +1,9 @@
 import { Analytics } from "@vercel/analytics/next";
 import { SpeedInsights } from "@vercel/speed-insights/next";
 
+// styles
 import "@/app/globals.css";
+import { ThemeProvider } from "@/components/theme-provider";
 
 import type { Metadata } from "next";
 export const metadata: Metadata = {
@@ -36,8 +38,6 @@ export const metadata: Metadata = {
 // components
 import UnderDevelopmentPage from "@/components/under-development";
 import Header from "@/components/Header";
-import Footer from "@/components/Footer";
-
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -46,16 +46,22 @@ export default function RootLayout({
   const isDevelopment = false;
 
   return (
-    <html lang="en">
+    <html lang="en" suppressHydrationWarning>
       <body className="antialiased min-h-screen">
         {isDevelopment ? (
           <UnderDevelopmentPage />
         ) : (
-          <>
+          <ThemeProvider
+            //attribute="class"
+            //defaultTheme="light"
+            //enableSystem
+            //disableTransitionOnChange
+          >
             <Header />
-            <main>{children}</main>
-            <Footer />
-          </>
+            <main className="bg-gray-50 min-h-[calc(100vh-64px)]">
+              {children}
+            </main>
+          </ThemeProvider>
         )}
         <Analytics />
         <SpeedInsights />
